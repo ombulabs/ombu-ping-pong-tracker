@@ -16,8 +16,11 @@ namespace :slack do
 
   desc "Create matches from Slack messages"
   task create_matches: :environment do
-    search = client.search_messages(query: "pong in:general", count: 1000)
-    messages_found = search["messages"]["matches"]
+    search_1 = client.search_messages(query: "pong in:general", count: 1000)
+    search_2 = client.search_messages(query: "pingpong in:general", count: 1000)
+    messages_found_1 = search_1["messages"]["matches"]
+    messages_found_2 = search_2["messages"]["matches"]
+    messages_found = (messages_found_1 + messages_found_2).uniq
     messages_found.each do |challenger|
       timestamp = Time.at(challenger["ts"].to_i)
       match = Match.find_or_create_by(played_at: timestamp)
