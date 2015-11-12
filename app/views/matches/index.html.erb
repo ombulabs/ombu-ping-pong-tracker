@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing <%= @matches.count %> Matches</h1>
+
+<h2>Top Challenger: </h2>
+<h3><%= @top_challenger.username %>, challenged others <%= @max_challenges %> times</h3>
+
+<h2>Played against each other the most: </h2>
+<h3><%= @top_pair[0] %> vs. <%= @top_pair[1] %>, <%= @top_pair_played %> matches</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Challenger</th>
+      <th></th>
+      <th>Opponent</th>
+      <th>Challenger's Message</th>
+      <th>Opponent's Message</th>
+      <th>Played on</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td><%= image_tag match.challenger.image_url %></td>
+        <td><%= match.challenger.username %></td>
+        <td><%= image_tag match.opponent.image_url %></td>
+        <td><%= match.opponent.username %></td>
+        <td><%= match.challenger_message %></td>
+        <td><%= match.opponent_message %></td>
+        <td><%= match.played_at.to_formatted_s(:long) %></td>
+        <td><%= link_to 'Show', match %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
