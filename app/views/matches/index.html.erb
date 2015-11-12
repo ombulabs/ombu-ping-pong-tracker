@@ -17,8 +17,7 @@
       <th>Opponent</th>
       <th>Challenger's Message</th>
       <th>Opponent's Message</th>
-      <th>Played on</th>
-      <th colspan="3"></th>
+      <th>Played at</th>
     </tr>
   </thead>
 
@@ -32,7 +31,6 @@
         <td><%= match.challenger_message %></td>
         <td><%= match.opponent_message %></td>
         <td><%= match.played_at.to_formatted_s(:long) %></td>
-        <td><%= link_to 'Show', match %></td>
       </tr>
     <% end %>
   </tbody>
